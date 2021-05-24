@@ -8,17 +8,11 @@
         <i class="el-icon-s-fold" v-if="!$store.state.isCollapse"></i>
         <i class="el-icon-s-unfold" v-else></i>
       </div>
-      <el-dropdown>
-        <span class="el-dropdown-link user-avator">
-          下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
-        </span>
+      <el-dropdown @command="logout">
+        <img :src="avator" alt="头像" class="user-avator">
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item>黄金糕</el-dropdown-item>
-            <el-dropdown-item>狮子头</el-dropdown-item>
-            <el-dropdown-item>螺蛳粉</el-dropdown-item>
-            <el-dropdown-item disabled>双皮奶</el-dropdown-item>
-            <el-dropdown-item divided>蚵仔煎</el-dropdown-item>
+            <el-dropdown-item command="logout">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -27,17 +21,27 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapState, useStore } from 'vuex';
+import { useRouter } from 'vue-router';
+
 export default {
   name: "VHeader",
-  setup() {},
+  setup() {
+    const store = useStore();
+    const router = useRouter();
+    async function logout() {
+      await store.dispatch('logout');
+      router.push('/login');
+    }
+    return {
+      logout,
+    }
+  },
   methods: {
       ...mapMutations(['onCollapse'])
   },
   computed: {
-    isCollapse() {
-      return this.$store.state.isCollapse;
-    }
+    ...mapState({isCollapse: 'isCollapse', avator: (state)=> state.userInfo.avator})
   }
 };
 </script>
@@ -50,9 +54,6 @@ export default {
     width: 180px;
     line-height: 60px;
     color: #fff;
-    &.is-collapse {
-
-    }
   }
   .nav-content {
     display: flex;
@@ -69,7 +70,10 @@ export default {
       }
     }
     .user-avator {
-      color: #fff;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      cursor: pointer;
     }
   }
 }

@@ -1,5 +1,5 @@
 import { createStore } from 'vuex';
-import { login, register, getUser } from '@/api';
+import { login, register, getUser, logout } from '@/api';
 import account from './account';
 import post from './post';
 
@@ -18,10 +18,13 @@ export default createStore({
   },
   actions: {
     async login(_,payload) {
-      await login(payload)
+      return login(payload)
+    },
+    async logout(_,payload) {
+      return logout(payload)
     },
     async register(_,payload) {
-      await register(payload)
+      return register(payload)
     },
     async getUser({commit},payload) {
       const userInfo = await getUser(payload);

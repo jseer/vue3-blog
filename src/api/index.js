@@ -9,6 +9,10 @@ export const login = (payload) => {
     return request.post('/api/user/login', payload)
 }
 
+export const logout = () => {
+    return request.post('/api/user/logout')
+}
+
 export const getUser = (payload) => {
     return request.get('/api/user/get', payload)
 }

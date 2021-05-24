@@ -24,7 +24,7 @@
       ></el-input>
     </el-form-item>
     <el-form-item>
-      <el-button size="normal" class="form__submit" type="primary" @click="submitForm"
+      <el-button size="medium" class="form__submit" type="primary" @click="submitForm"
         >注册</el-button
       >
     </el-form-item>

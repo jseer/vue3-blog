@@ -62,11 +62,14 @@ router.beforeEach(async (to, from) => {
       const userInfo = await store.dispatch("getUser");
       if (userInfo.isAdmin) {
         const route = router.resolve(to);
-        const hasRoute = router.hasRoute(route.name);
+        const hasCurRoute = router.hasRoute(route.name);
         router.addRoute("Home", adminRoute);
-        if (!hasRoute) return to;
+        if (!hasCurRoute) return to;
       } else {
-        router.removeRoute(adminRoute.name);
+        const hasAdminRoute = router.hasRoute(adminRoute.name);
+        if(hasAdminRoute) {
+          router.removeRoute(adminRoute.name);
+        }
       }
     }
   }
