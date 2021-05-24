@@ -17,4 +17,9 @@ export default {
   height: 100vh;
   color: #606266;
 }
+.pagination {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
 </style>

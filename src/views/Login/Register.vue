@@ -24,7 +24,7 @@
       ></el-input>
     </el-form-item>
     <el-form-item>
-      <el-button class="form__submit" type="primary" @click="submitForm"
+      <el-button size="normal" class="form__submit" type="primary" @click="submitForm"
         >注册</el-button
       >
     </el-form-item>
@@ -68,7 +68,7 @@ export default {
         { min: 1, max: 20, message: "不超过20个字符" },
       ],
       password: [
-        { min: 1, max: 20, message: "不超过20个字符" },
+        { min: 6, max: 20, message: "请输入6到20个字符" },
         { validator: validatePass, trigger: 'blur' },
       ],
       checkPassword: [{ validator: validatePass2, trigger: 'blur' }],

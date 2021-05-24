@@ -34,7 +34,7 @@
       </el-col>
     </el-row>
     <el-form-item>
-      <el-button class="form__submit" type="primary" @click="submitForm"
+      <el-button size="normal" class="form__submit" type="primary" @click="submitForm"
         >登录</el-button
       >
     </el-form-item>
@@ -52,13 +52,13 @@ export default {
       //   remember: false,
       code: "",
     });
-    const captcha = ref("/getCaptcha");
+    const captcha = ref("/api/getCaptcha");
     const rules = {
       username: [{ required: true, message: "请输入名称" }],
       password: [{ required: true, message: "请输入密码" }],
     };
     const onCaptchaClick = () => {
-      captcha.value = `/getCaptcha?t=${Date.now()}`;
+      captcha.value = `/api/getCaptcha?t=${Date.now()}`;
     };
     return {
       form,
