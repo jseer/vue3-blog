@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === 'development') {
     if ('__VUE_DEVTOOLS_GLOBAL_HOOK__' in window) {
       window.__VUE_DEVTOOLS_GLOBAL_HOOK__.Vue = app;
     }
-    app.config.devtools = true;
+    app.config.devtools = true
   }
 app.use(store).use(router).use(ElementPlus, { locale });
 app.mount('#app');
