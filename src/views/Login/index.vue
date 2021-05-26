@@ -1,7 +1,7 @@
 <template>
   <div class="login-wrapper">
     <div class="login__form">
-      <el-tabs v-model="activeName" stretch class="login__form__tab">
+      <el-tabs v-model="activeName" @tab-click="onTabClick" stretch class="login__form__tab">
         <el-tab-pane name="login">
           <template #label>
             <div class="login__form__tab__title">登录</div>
@@ -39,6 +39,11 @@ export default {
       this.activeName = 'login';
       this.$refs.loginForm.form.username = params.username;
       this.$refs.loginForm.form.password = params.password;
+    },
+    onTabClick(tab) {
+      if(tab.paneName === 'login') {
+        this.$refs.loginForm.onCaptchaClick();
+      }
     }
   }
 };

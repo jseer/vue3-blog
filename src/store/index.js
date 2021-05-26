@@ -20,8 +20,9 @@ export default createStore({
     async login(_,payload) {
       return login(payload)
     },
-    async logout(_,payload) {
-      return logout(payload)
+    async logout({commit},payload) {
+      await logout(payload)
+      commit('setUserInfo', null)
     },
     async register(_,payload) {
       return register(payload)

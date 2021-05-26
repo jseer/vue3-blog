@@ -42,10 +42,13 @@
 </template>
 
 <script>
-import { reactive, ref } from "vue";
+import { reactive, ref, watch } from "vue";
+import { useRoute } from 'vue-router';
 export default {
   name: "VLogin",
-  setup() {
+  props: ['activeName'],
+  setup(props) {
+    const route = useRoute();
     const form = reactive({
       username: "",
       password: "",
@@ -60,6 +63,11 @@ export default {
     const onCaptchaClick = () => {
       captcha.value = `/api/getCaptcha?t=${Date.now()}`;
     };
+    watch([
+      route,
+    ], ()=> {
+      onCaptchaClick();
+    })
     return {
       form,
       rules,
